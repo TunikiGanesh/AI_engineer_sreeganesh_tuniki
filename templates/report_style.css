@@ -1,0 +1,340 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Geojit-Style Equity Research Report — Stylesheet
+   Palette:  Navy #003366  |  Gold #C8960C  |  White #FFFFFF  |  Slate #F5F7FA
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Page setup (WeasyPrint) ───────────────────────────────────────────────── */
+@page {
+  size: A4 portrait;
+  margin: 12mm 14mm 16mm 14mm;
+}
+
+body {
+  font-family: 'Source Sans 3', 'DejaVu Sans', Arial, sans-serif;
+  font-size: 9pt;
+  color: #1A1A2E;
+  background: #FFFFFF;
+  line-height: 1.5;
+}
+
+/* ── Header Band ────────────────────────────────────────────────────────────── */
+.header-band {
+  background: linear-gradient(135deg, #002855 0%, #003F7F 60%, #004D99 100%);
+  color: #FFFFFF;
+  padding: 14px 18px 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 4px solid #C8960C;
+  page-break-inside: avoid;
+}
+
+.header-logo-area {
+  display: flex;
+  flex-direction: column;
+  min-width: 130px;
+}
+
+.brokerage-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #FFD580;
+}
+
+.report-type {
+  font-size: 7pt;
+  letter-spacing: 2px;
+  color: #A8C0D8;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.header-divider {
+  width: 2px;
+  height: 48px;
+  background: rgba(255,255,255,0.25);
+  margin: 0 4px;
+}
+
+.header-company-block {
+  flex: 1;
+}
+
+.company-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17pt;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.sector-tag {
+  font-size: 8pt;
+  color: #C8960C;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.header-rating-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.rating-badge {
+  font-family: 'Playfair Display', serif;
+  font-size: 13pt;
+  font-weight: 700;
+  padding: 4px 18px;
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+}
+
+.rating-buy   { background: #1A7A4A; color: #FFFFFF; }
+.rating-hold  { background: #C8960C; color: #FFFFFF; }
+.rating-sell  { background: #C0392B; color: #FFFFFF; }
+
+.price-row {
+  display: flex;
+  gap: 14px;
+}
+
+.price-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-label {
+  font-size: 6.5pt;
+  color: #A8C0D8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.price-value {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #FFD580;
+}
+
+.price-cell.upside .price-value { color: #90EE90; }
+
+/* ── Info Strip ─────────────────────────────────────────────────────────────── */
+.info-strip {
+  display: flex;
+  background: #F0F4F9;
+  border-bottom: 2px solid #C8960C;
+  padding: 8px 18px;
+  gap: 0;
+  page-break-inside: avoid;
+}
+
+.info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #D0DCE8;
+  padding: 0 8px;
+}
+
+.info-item:last-child { border-right: none; }
+
+.info-label {
+  font-size: 6.5pt;
+  color: #6B7C93;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #003366;
+  margin-top: 2px;
+}
+
+/* ── Content Grid ───────────────────────────────────────────────────────────── */
+.content-grid {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0 0 0;
+}
+
+.col-left, .col-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Section Cards ──────────────────────────────────────────────────────────── */
+.section-card {
+  background: #FFFFFF;
+  border: 1px solid #D8E4EF;
+  border-radius: 4px;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+
+.section-card.full-width {
+  width: 100%;
+  margin: 8px 0 0 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.3px;
+}
+
+.section-icon { font-size: 7pt; opacity: 0.8; }
+
+/* Header colour variants */
+.section-header.investment  { background: #003366; }
+.section-header.highlights  { background: #1A4E7E; }
+.section-header.overview    { background: #1A4E7E; }
+.section-header.financials  { background: #C8960C; }
+.section-header.valuation   { background: #A07208; }
+.section-header.charts      { background: #003366; }
+.section-header.outlook     { background: #1A7A4A; }
+.section-header.risks       { background: #8B1A1A; }
+
+/* ── Body Text ──────────────────────────────────────────────────────────────── */
+.body-text {
+  padding: 8px 10px;
+  font-size: 8.5pt;
+  color: #2D3748;
+  line-height: 1.6;
+}
+
+.commentary-text {
+  border-top: 1px dashed #D0DCE8;
+  margin-top: 4px;
+  padding-top: 6px;
+  color: #3D5166;
+  font-style: italic;
+}
+
+/* ── Lists ──────────────────────────────────────────────────────────────────── */
+.highlight-list,
+.risk-list {
+  padding: 6px 10px 6px 22px;
+  font-size: 8.5pt;
+  color: #2D3748;
+  line-height: 1.7;
+}
+
+.highlight-list li::marker { color: #C8960C; font-size: 9pt; }
+.risk-list     li::marker { color: #C0392B; font-size: 9pt; }
+
+/* ── Financial Table ────────────────────────────────────────────────────────── */
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8pt;
+}
+
+.fin-table thead tr {
+  background: #EEF3F9;
+}
+
+.fin-table th {
+  padding: 5px 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 7.5pt;
+  color: #003366;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #C8960C;
+}
+
+.fin-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #EDF2F7;
+  color: #2D3748;
+}
+
+.fin-table tbody tr:nth-child(even) td { background: #F8FAFD; }
+.fin-table tbody tr:last-child td      { border-bottom: none; }
+.fin-table td:last-child               { font-weight: 600; color: #003366; }
+
+/* ── Charts Row ─────────────────────────────────────────────────────────────── */
+.charts-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 8px;
+  background: #FAFCFF;
+}
+
+.chart-box {
+  flex: 1;
+  max-width: 33%;
+}
+
+.chart-box img {
+  width: 100%;
+  border: 1px solid #D8E4EF;
+  border-radius: 3px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────────── */
+.footer-band {
+  background: #002855;
+  color: #A8C0D8;
+  font-size: 7pt;
+  padding: 10px 18px;
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-top: 3px solid #C8960C;
+  page-break-inside: avoid;
+}
+
+.footer-left {
+  color: #FFD580;
+  font-weight: 700;
+  font-size: 7.5pt;
+  flex: 0 0 100%;
+  margin-bottom: 2px;
+}
+
+.footer-right {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.footer-page {
+  color: #C8960C;
+  font-weight: 700;
+  align-self: flex-end;
+  font-size: 7.5pt;
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ metrics.company_name }} – Equity Research Report</title>
+  <link rel="stylesheet" href="report_style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER BAND
+══════════════════════════════════════════════════════ -->
+<div class="header-band">
+  <div class="header-logo-area">
+    <span class="brokerage-name">GEOJIT FINANCIAL SERVICES</span>
+    <span class="report-type">EQUITY RESEARCH</span>
+  </div>
+  <div class="header-divider"></div>
+  <div class="header-company-block">
+    <h1 class="company-title">{{ metrics.company_name }}</h1>
+    <p class="sector-tag">{{ metrics.sector }}</p>
+  </div>
+  <div class="header-rating-block">
+    <div class="rating-badge rating-{{ metrics.recommendation | lower }}">
+      {{ metrics.recommendation }}
+    </div>
+    <div class="price-row">
+      <div class="price-cell">
+        <span class="price-label">Target Price</span>
+        <span class="price-value">{{ metrics.target_price }}</span>
+      </div>
+      <div class="price-cell">
+        <span class="price-label">CMP</span>
+        <span class="price-value">{{ metrics.cmp }}</span>
+      </div>
+      <div class="price-cell upside">
+        <span class="price-label">Upside</span>
+        <span class="price-value">{{ metrics.upside_downside }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPANY INFORMATION STRIP
+══════════════════════════════════════════════════════ -->
+<div class="info-strip">
+  <div class="info-item">
+    <span class="info-label">Market Cap</span>
+    <span class="info-value">{{ metrics.market_cap }}</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">Revenue</span>
+    <span class="info-value">{{ metrics.revenue }}</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">EPS</span>
+    <span class="info-value">{{ metrics.eps }}</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">ROE</span>
+    <span class="info-value">{{ metrics.roe }}</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">Debt</span>
+    <span class="info-value">{{ metrics.debt }}</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">EBITDA Margin</span>
+    <span class="info-value">{{ metrics.ebitda_margin }}</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTENT – two-column layout
+══════════════════════════════════════════════════════ -->
+<div class="content-grid">
+
+  <!-- LEFT COLUMN -->
+  <div class="col-left">
+
+    <!-- Investment Thesis -->
+    <div class="section-card">
+      <div class="section-header investment">
+        <span class="section-icon">◆</span>
+        <h2>Investment Thesis</h2>
+      </div>
+      <p class="body-text">{{ commentary.investment_thesis }}</p>
+    </div>
+
+    <!-- Key Highlights -->
+    <div class="section-card">
+      <div class="section-header highlights">
+        <span class="section-icon">◆</span>
+        <h2>Key Highlights</h2>
+      </div>
+      <ul class="highlight-list">
+        {% for item in metrics.key_highlights %}
+        <li>{{ item }}</li>
+        {% else %}
+        <li>No highlights extracted.</li>
+        {% endfor %}
+      </ul>
+      <p class="body-text commentary-text">{{ commentary.key_highlights_commentary }}</p>
+    </div>
+
+    <!-- Business Overview -->
+    <div class="section-card">
+      <div class="section-header overview">
+        <span class="section-icon">◆</span>
+        <h2>Business Overview</h2>
+      </div>
+      <p class="body-text">{{ metrics.business_overview }}</p>
+    </div>
+
+  </div><!-- /col-left -->
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-right">
+
+    <!-- Financial Table -->
+    <div class="section-card">
+      <div class="section-header financials">
+        <span class="section-icon">◆</span>
+        <h2>Financial Snapshot</h2>
+      </div>
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Revenue</td>         <td>{{ metrics.revenue }}</td></tr>
+          <tr><td>Revenue Growth</td>  <td>{{ metrics.revenue_growth }}</td></tr>
+          <tr><td>EBITDA</td>          <td>{{ metrics.ebitda }}</td></tr>
+          <tr><td>EBITDA Margin</td>   <td>{{ metrics.ebitda_margin }}</td></tr>
+          <tr><td>PAT</td>             <td>{{ metrics.pat }}</td></tr>
+          <tr><td>PAT Growth</td>      <td>{{ metrics.pat_growth }}</td></tr>
+          <tr><td>EPS</td>             <td>{{ metrics.eps }}</td></tr>
+          <tr><td>ROE</td>             <td>{{ metrics.roe }}</td></tr>
+          <tr><td>Debt</td>            <td>{{ metrics.debt }}</td></tr>
+          <tr><td>Market Cap</td>      <td>{{ metrics.market_cap }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Valuation Table -->
+    <div class="section-card">
+      <div class="section-header valuation">
+        <span class="section-icon">◆</span>
+        <h2>Valuation Summary</h2>
+      </div>
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>CMP</td>              <td>{{ metrics.cmp }}</td></tr>
+          <tr><td>Target Price</td>     <td>{{ metrics.target_price }}</td></tr>
+          <tr><td>Upside / Downside</td><td>{{ metrics.upside_downside }}</td></tr>
+          <tr><td>Recommendation</td>   <td><strong>{{ metrics.recommendation }}</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /col-right -->
+
+</div><!-- /content-grid -->
+
+<!-- ═══════════════════════════════════════════════════
+     CHARTS SECTION (full width)
+══════════════════════════════════════════════════════ -->
+<div class="section-card full-width">
+  <div class="section-header charts">
+    <span class="section-icon">◆</span>
+    <h2>Financial Performance Charts</h2>
+  </div>
+  <div class="charts-row">
+    {% if revenue_chart_path %}
+    <div class="chart-box">
+      <img src="{{ revenue_chart_path }}" alt="Revenue Chart" />
+    </div>
+    {% endif %}
+    {% if ebitda_chart_path %}
+    <div class="chart-box">
+      <img src="{{ ebitda_chart_path }}" alt="EBITDA Chart" />
+    </div>
+    {% endif %}
+    {% if pat_chart_path %}
+    <div class="chart-box">
+      <img src="{{ pat_chart_path }}" alt="PAT Chart" />
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     OUTLOOK & VALUATION  +  RISKS (two-column)
+══════════════════════════════════════════════════════ -->
+<div class="content-grid">
+  <div class="col-left">
+    <div class="section-card">
+      <div class="section-header outlook">
+        <span class="section-icon">◆</span>
+        <h2>Outlook &amp; Valuation</h2>
+      </div>
+      <p class="body-text">{{ metrics.outlook }}</p>
+      <p class="body-text commentary-text">{{ commentary.outlook_valuation }}</p>
+    </div>
+  </div>
+
+  <div class="col-right">
+    <div class="section-card">
+      <div class="section-header risks">
+        <span class="section-icon">◆</span>
+        <h2>Risk Factors</h2>
+      </div>
+      <ul class="risk-list">
+        {% for risk in metrics.risks %}
+        <li>{{ risk }}</li>
+        {% else %}
+        <li>No risks extracted.</li>
+        {% endfor %}
+      </ul>
+      <p class="body-text commentary-text">{{ commentary.risk_factors }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<div class="footer-band">
+  <div class="footer-left">
+    <strong>GEOJIT FINANCIAL SERVICES LTD.</strong> &nbsp;|&nbsp;
+    Equity Research &amp; Institutional Sales
+  </div>
+  <div class="footer-right">
+    <em>Disclaimer:</em> This report is for informational purposes only and does not constitute
+    investment advice. Past performance is not indicative of future results.
+    Investors should conduct their own due diligence before making investment decisions.
+    &copy; {{ report_date }} Geojit Financial Services Ltd. All rights reserved.
+  </div>
+  <div class="footer-page">Page 1 of 1</div>
+</div>
+
+</body>
+</html>
