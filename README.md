@@ -188,3 +188,12 @@ This tool generates research reports for informational purposes only. Output sho
 ---
 
 *Built with ❤️ using Streamlit · OpenAI GPT-4o · PyMuPDF · Matplotlib · WeasyPrint*
+
+## Submission Reports
+
+Two generated sample reports are included in:
+
+- `submission_reports/example_report_1.pdf`
+- `submission_reports/example_report_2.pdf`
+
+Note: live LLM extraction currently depends on active OpenAI quota/billing.
